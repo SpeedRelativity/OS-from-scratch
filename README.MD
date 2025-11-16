@@ -66,3 +66,37 @@ Checked the beginning and end of the generated `.bin` file:
 xxd boot_sect_simple.bin | head
 xxd boot_sect_simple.bin | tail
 ```
+
+
+## Step 3: Printing Hello World Program
+
+### What I Learned
+- **CPU Registers**: Tiny storage inside CPU (ax, ah, al)
+- **Interrupts**: Way to call BIOS functions (int 0x10 = video services)
+- **Teletype mode**: 0x0e in ah = print character mode
+
+### Code Structure
+```assembly
+mov ah, 0x0e    ; Set function: teletype
+mov al, 'H'     ; Set character
+int 0x10        ; Call BIOS to print
+```
+
+### Actual Code
+
+```assembly
+mov ah, 0x0e ; tty mode
+mov al, 'H'
+int 0x10
+mov al, 'e'
+int 0x10
+mov al, 'l'
+int 0x10
+int 0x10 ; 'l' is still on al, remember?
+mov al, 'o'
+int 0x10
+```
+### Result
+Bootloader printed "Hello" to screen!
+
+
