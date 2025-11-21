@@ -100,3 +100,7 @@ int 0x10
 Bootloader printed "Hello" to screen!
 
 
+## Stack code below
+
+
+
